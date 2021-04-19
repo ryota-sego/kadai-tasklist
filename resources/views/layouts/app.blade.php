@@ -16,13 +16,24 @@
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="nav-bar">
-                    <ul class="navbar-nav mr-auto"></ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">{!! link_to_route('tasks.create', '新規タスクの追加', [], ['class' => 'nav-link']) !!}</li>
-                    </ul>
-                </div>
+                @if (Auth::check())
+                    <div class="collapse navbar-collapse" id="nav-bar">
+                        <ul class="navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">{!! link_to_route('tasks.create', '新規タスクの追加', [], ['class' => 'nav-link']) !!}</li>
+                            <li class="nav-item">{!! link_to_route('logout.get', 'LOG_OUT', [], ['class' => 'nav-link']) !!}</li>
+                        </ul>
+                    </div>
+                @else
+                    <div class="collapse navbar-collapse" id="nav-bar">
+                        <ul class="navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">{!! link_to_route('signup.get', 'SIGH UP!', [], ['class' => 'nav-link']) !!}</li>
+                            <li class="nav-item">{!! link_to_route('login.get', 'LOGIN', [], ['class' => 'nav-link']) !!}</li>
+                        </ul>
+                    </div>
+                    
+                @endif
             </nav>
         </header>
 

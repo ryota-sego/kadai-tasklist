@@ -12,5 +12,10 @@
 */
 
 Route::get('/', 'TasksController@index');
-
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login.get');
+Route::post('login', 'Auth\LoginController@login')->name('login.post');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
+Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
+Route::post('signup', 'Auth\RegisterController@Register')->name('signup.post');
+Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
 Route::resource('tasks', 'TasksController');
