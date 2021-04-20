@@ -15,6 +15,7 @@ class UserId extends Migration
     {
         Schema::table('tasks', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -25,7 +26,9 @@ class UserId extends Migration
      */
     public function down()
     {
+        
         Schema::table('tasks', function (Blueprint $table) {
+            $table->dropForeign('tasks_user_id_foreign');
             $table->dropColumn('user_id');
         });
     }
